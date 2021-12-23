@@ -19,7 +19,7 @@ func TestListMergeSort05(t *testing.T) {
 
 	fmt.Println("ending LMS")
 
-	//PrintLinkedList(list3)
+	PrintLinkedList(list3)
 
 }
 

@@ -5,6 +5,7 @@ import (
 	"testing"
 )
 
+//1
 func TestListsEqual01(t *testing.T) {
 
 	list1 := LinkedList{nil, nil}
@@ -15,6 +16,7 @@ func TestListsEqual01(t *testing.T) {
 	}
 }
 
+//2
 func TestListsEqual02(t *testing.T) {
 
 	list1 := LinkedList{nil, nil}
@@ -27,6 +29,7 @@ func TestListsEqual02(t *testing.T) {
 	}
 }
 
+//3
 func TestListsEqual03(t *testing.T) {
 
 	list1 := LinkedList{nil, nil}
@@ -40,6 +43,7 @@ func TestListsEqual03(t *testing.T) {
 	}
 }
 
+//4
 func TestListsEqual04(t *testing.T) {
 
 	list1 := LinkedList{nil, nil}
@@ -53,6 +57,7 @@ func TestListsEqual04(t *testing.T) {
 	}
 }
 
+//5
 func TestListsEqual05(t *testing.T) {
 
 	list1 := LinkedList{nil, nil}
@@ -71,6 +76,7 @@ func TestListsEqual05(t *testing.T) {
 	}
 }
 
+//6
 func TestListsEqual06(t *testing.T) {
 
 	list1 := LinkedList{nil, nil}
@@ -89,6 +95,7 @@ func TestListsEqual06(t *testing.T) {
 	}
 }
 
+//7
 func TestIncrementList01(t *testing.T) {
 
 	list := LinkedList{nil, nil}
@@ -102,6 +109,7 @@ func TestIncrementList01(t *testing.T) {
 
 }
 
+//8
 func TestIncrementList02(t *testing.T) {
 
 	list := LinkedList{nil, nil}
@@ -112,6 +120,7 @@ func TestIncrementList02(t *testing.T) {
 
 }
 
+//9
 func TestGetListHead01(t *testing.T) {
 
 	list := LinkedList{nil, nil}
@@ -121,6 +130,7 @@ func TestGetListHead01(t *testing.T) {
 	fmt.Println("Value of headnode = ", headnode.value)
 }
 
+//10
 func TestCreateEmptyLinkedList(t *testing.T) {
 
 	list := CreateEmptyLinkedList()
@@ -130,6 +140,8 @@ func TestCreateEmptyLinkedList(t *testing.T) {
 	PrintLinkedList(list)
 
 }
+
+//11
 func TestGetNodevalue01(t *testing.T) {
 
 	node1 := Node{50, nil, 0}
@@ -138,6 +150,7 @@ func TestGetNodevalue01(t *testing.T) {
 	fmt.Println("Value of node = ", nodevalue)
 }
 
+//12
 func TestGetNextNode(t *testing.T) {
 
 	node1 := Node{50, nil, 0}
@@ -149,6 +162,7 @@ func TestGetNextNode(t *testing.T) {
 	fmt.Println("Value of node = ", node3.GetNodeValue())
 }
 
+//13
 func TestRemoveDuplicateElements01(t *testing.T) {
 
 	list1 := LinkedList{nil, nil}
@@ -174,6 +188,7 @@ func TestRemoveDuplicateElements01(t *testing.T) {
 
 }
 
+//14
 func TestRemoveDuplicateElements02(t *testing.T) {
 
 	list1 := LinkedList{nil, nil}
@@ -193,6 +208,7 @@ func TestRemoveDuplicateElements02(t *testing.T) {
 
 }
 
+//15
 func TestTrimList01(t *testing.T) {
 
 	list1 := LinkedList{nil, nil}
@@ -224,6 +240,7 @@ func TestTrimList01(t *testing.T) {
 	}
 }
 
+//16
 func TestTrimList02(t *testing.T) {
 
 	list1 := LinkedList{nil, nil}
