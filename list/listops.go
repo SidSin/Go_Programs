@@ -253,6 +253,9 @@ func (L *LinkedList) CopyList() *LinkedList {
 	return &newlist
 }
 
+//assumes that the list L is sorted
+//creates a new list with unique values from L
+//and returns the new list
 func RemoveDuplicateElements(L *LinkedList) *LinkedList {
 
 	newlist := LinkedList{nil, nil}
