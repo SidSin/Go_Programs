@@ -117,6 +117,8 @@ func (L *LinkedList) RemoveFromFront() {
 	}
 }
 
+//adds elements of list2 at the end of list1
+//iterative method
 func (L1 *LinkedList) ListUnion(L2 *LinkedList) {
 
 	currnode := L2.head
