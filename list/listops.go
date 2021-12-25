@@ -130,15 +130,12 @@ func (L1 *LinkedList) ListUnion(L2 *LinkedList) {
 }
 
 //adds elements of list2 at the end of list1
-//iterative method
+//tail pointer manipulation method
 func (L1 *LinkedList) FastListUnion(L2 *LinkedList) {
 
-	currnode := L2.head
+	L1.tail.next = L2.head
+	L1.tail = L2.tail
 
-	for currnode != nil {
-		L1.AddatEnd(currnode.value)
-		currnode = currnode.next
-	}
 }
 
 func GetListLenght(L2 *LinkedList) int {
