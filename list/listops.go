@@ -43,6 +43,10 @@ func (L *LinkedList) GetListHead() *Node {
 	return L.head
 }
 
+func (L *LinkedList) GetListTail() *Node {
+	return L.tail
+}
+
 func (L *LinkedList) GetListTailValue() int {
 	return L.tail.value
 }
