@@ -328,3 +328,21 @@ func TrimList(L *LinkedList, delta float32) *LinkedList {
 
 	return &newlist
 }
+
+func PrintNthNodeElement(L *LinkedList, n int) int {
+
+	//put a check for n < 1
+
+	currnode := L.GetListHead()
+	i := 1
+
+	listlen := GetListLenght(L)
+
+	for i < n && n <= listlen {
+		currnode = currnode.next
+		i++
+	}
+
+	return currnode.value
+
+}

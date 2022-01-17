@@ -271,3 +271,31 @@ func TestTrimList02(t *testing.T) {
 		PrintLinkedList(trimmedlistptr)
 	}
 }
+
+func TestPrintNthNodeElement01(t *testing.T) {
+
+	list1 := LinkedList{nil, nil}
+	list1.AddatEnd(10)
+	list1.AddatEnd(12)
+	list1.AddatEnd(15)
+	list1.AddatEnd(20)
+	list1.AddatEnd(23)
+
+	if PrintNthNodeElement(&list1, 2) != 12 {
+		t.Errorf("Second element should be 12")
+	}
+}
+
+func TestPrintNthNodeElement02(t *testing.T) {
+
+	list1 := LinkedList{nil, nil}
+	list1.AddatEnd(10)
+	list1.AddatEnd(12)
+	list1.AddatEnd(15)
+	list1.AddatEnd(20)
+	list1.AddatEnd(23)
+
+	if PrintNthNodeElement(&list1, 20) != 12 {
+		t.Errorf("Second element should be 12")
+	}
+}

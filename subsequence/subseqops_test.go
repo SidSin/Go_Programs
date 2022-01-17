@@ -154,3 +154,75 @@ func TestSubSeq07(t *testing.T) {
 		t.Errorf("{1,2,3,2} is NOT a subseq of {0}")
 	}
 }
+
+func TestLcsLenght01(t *testing.T) {
+
+	list1 := list.CreateEmptyLinkedList()
+	list2 := list.CreateEmptyLinkedList()
+
+	list1.AddatEnd(1)
+	list1.AddatEnd(2)
+	list1.AddatEnd(3)
+
+	list2.AddatEnd(1) //A
+	list2.AddatEnd(2) //B
+	list2.AddatEnd(3) //C
+
+	LcsLenght(list1, list2)
+}
+
+func TestLcsLenght02(t *testing.T) {
+
+	list1 := list.CreateEmptyLinkedList()
+	list2 := list.CreateEmptyLinkedList()
+
+	list1.AddatEnd(1)
+	list1.AddatEnd(2)
+	list1.AddatEnd(3)
+
+	list2.AddatEnd(3) //C
+	list2.AddatEnd(2) //B
+	list2.AddatEnd(1) //A
+
+	LcsLenght(list1, list2)
+}
+
+func TestLcsLenght03(t *testing.T) {
+
+	list1 := list.CreateEmptyLinkedList()
+	list2 := list.CreateEmptyLinkedList()
+
+	list1.AddatEnd(1)
+	list1.AddatEnd(2)
+	list1.AddatEnd(3)
+
+	list2.AddatEnd(1) //A
+	list2.AddatEnd(2) //B
+	list2.AddatEnd(3) //C
+	list2.AddatEnd(4) //D
+
+	LcsLenght(list1, list2)
+}
+
+func TestLcsLenght04(t *testing.T) {
+
+	list1 := list.CreateEmptyLinkedList()
+	list2 := list.CreateEmptyLinkedList()
+
+	list1.AddatEnd(1) //A
+	list1.AddatEnd(2) //B
+	list1.AddatEnd(3) //C
+	list1.AddatEnd(2) //B
+	list1.AddatEnd(4) //D
+	list1.AddatEnd(1) //A
+	list1.AddatEnd(2) //B
+
+	list2.AddatEnd(2) //B
+	list2.AddatEnd(4) //D
+	list2.AddatEnd(3) //C
+	list2.AddatEnd(1) //A
+	list2.AddatEnd(2) //B
+	list2.AddatEnd(1) //A
+
+	LcsLenght(list1, list2)
+}
