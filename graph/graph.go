@@ -5,8 +5,7 @@ import (
 )
 
 type GraphNode struct {
-	value int
-	//next     *GraphNode
+	value      int
 	colour     string
 	distance   int
 	parent     *GraphNode
