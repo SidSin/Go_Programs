@@ -9,7 +9,7 @@ type GraphNode struct {
 	colour     string
 	distance   int
 	parent     *GraphNode
-	finishtime int
+	finishtime int //used in DFS
 }
 
 type Edge struct {
@@ -41,10 +41,6 @@ type Graph interface {
 func (GN GraphNode) GetGraphNodeValue() interface{} {
 	return GN.value
 }
-
-// func (GN GraphNode) GetNextGraphNode() *GraphNode {
-// 	return GN.next
-// }
 
 func (GN GraphNode) GetGraphNodeColour() string {
 	return GN.colour

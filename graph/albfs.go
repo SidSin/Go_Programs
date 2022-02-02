@@ -41,12 +41,14 @@ func ALBFS(ALGptr *ADJListGraph, s int) {
 			if ALGptr.vertexset[v].colour == "WHITE" {
 				ALGptr.vertexset[v].colour = "GRAY"
 
+				//restting distance to zero before incrementing it
+				//this avoids setting distance to MinInt when incremented
+				//also correctly calculates distances
 				if ALGptr.vertexset[v].distance == math.MaxInt {
 					ALGptr.vertexset[v].distance = 0
 				}
 				ALGptr.vertexset[v].distance = ALGptr.vertexset[u].distance + 1
 				ALGptr.vertexset[v].parent = &ALGptr.vertexset[u]
-				//ALGptr.vertexset[v].parent.value = ALGptr.vertexset[u].value
 				Q.AddatEnd(v)
 			}
 			currnode = currnode.GetNextNode()
@@ -59,6 +61,11 @@ func ALBFS(ALGptr *ADJListGraph, s int) {
 func PrintPath(gptr *ADJListGraph, s, v int) {
 
 	adjlistgraph := *gptr
+
+	if v >= adjlistgraph.ALVertexCount() {
+		fmt.Println("No such vertex as ", v)
+		return
+	}
 
 	if v == s {
 		fmt.Println(v)
