@@ -240,8 +240,8 @@ func TestPrintPath05(t *testing.T) {
 
 	PrintALGraphNodeProperties(gptr1)
 
-	//note here s is constrainted to be three
-	//because the BFS was done with node three as source
+	//note here s is constrainted to be five
+	//because the BFS was done with node five as source
 	v := 6
 	fmt.Println("------Printing Path from ", s, " to ", v, "-----------------")
 	PrintPath(gptr1, s, v)
