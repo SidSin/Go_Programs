@@ -1,28 +1,11 @@
 package graph
 
-import (
-	"math"
-)
-
 type GraphNode struct {
 	value      int
 	colour     string
 	distance   int
 	parent     *GraphNode
 	finishtime int //used in DFS
-}
-
-type Edge struct {
-	u *GraphNode
-	v *GraphNode
-}
-
-func CreateEdge(u, v int) Edge {
-
-	ptr1 := &GraphNode{value: u, colour: "WHITE", distance: math.MaxInt, parent: nil, finishtime: math.MaxInt}
-	ptr2 := &GraphNode{value: v, colour: "WHITE", distance: math.MaxInt, parent: nil, finishtime: math.MaxInt}
-
-	return Edge{ptr1, ptr2}
 }
 
 type Graph interface {
@@ -36,7 +19,7 @@ type Graph interface {
 }
 
 ///////////////////////////////////////////////////////////////
-//getter functions
+//getter functions for graphnode
 ///////////////////////////////////////////////////////////////
 func (GN GraphNode) GetGraphNodeValue() interface{} {
 	return GN.value
@@ -55,5 +38,5 @@ func (GN GraphNode) GetGraphNodeParent() *GraphNode {
 }
 
 ///////////////////////////////////////////////////////////////
-//setter functions
+//setter functions for graphnode
 ///////////////////////////////////////////////////////////////
