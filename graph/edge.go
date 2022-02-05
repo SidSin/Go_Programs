@@ -16,6 +16,14 @@ func CreateEdge(u, v int) Edge {
 	return Edge{ptr1, ptr2, math.MinInt}
 }
 
+func CreateWeightedEdge(u, v, w int) Edge {
+
+	ptr1 := &GraphNode{value: u, colour: "WHITE", distance: math.MaxInt, parent: nil, finishtime: math.MaxInt}
+	ptr2 := &GraphNode{value: v, colour: "WHITE", distance: math.MaxInt, parent: nil, finishtime: math.MaxInt}
+
+	return Edge{ptr1, ptr2, w}
+}
+
 func (e *Edge) SetEdgeWeight(w int) {
 	e.weight = w
 }
