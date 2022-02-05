@@ -61,6 +61,20 @@ func (ALG ADJListGraph) InsertEdge(e Edge) {
 		//add start vertex to the adj list of end vertex
 		ALG.adjlist[endnodevalue].AddatEnd(startnodevalue)
 	}
+
+	es := ALG.edgeset
+	es[e] = true
+}
+
+//add direction to edge if its a directed graph
+func (ALG ADJListGraph) PrintEdgeSet() {
+
+	for e := range ALG.edgeset {
+
+		n1 := *e.u
+		n2 := *e.v
+		fmt.Println(n1.value, " -- ", n2.value, ", edgeweight = ", e.weight)
+	}
 }
 
 //Prints the adjacency list representation of the graph
