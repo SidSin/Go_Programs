@@ -55,8 +55,10 @@ func (ALG ADJListGraph) InsertEdge(e Edge) {
 	startnodevalue := e.u.value
 	endnodevalue := e.v.value
 
+	//add end vertex to the adjacency list of start vertex
 	ALG.adjlist[startnodevalue].AddatEnd(endnodevalue)
 	if !ALG.isdirected {
+		//add start vertex to the adj list of end vertex
 		ALG.adjlist[endnodevalue].AddatEnd(startnodevalue)
 	}
 }
@@ -82,6 +84,9 @@ func (ALG ADJListGraph) PrintGraphAL() {
 	}
 }
 
+// after performing BFS or DFS on a graph, this func
+// can be used to print the properties of each node
+// in the graph
 func PrintALGraphNodeProperties(algptr *ADJListGraph) {
 
 	algraph := *algptr
