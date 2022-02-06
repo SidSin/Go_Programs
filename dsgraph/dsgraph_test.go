@@ -1,4 +1,4 @@
-package disjointsets
+package dsgraph
 
 import (
 	"fmt"
@@ -10,12 +10,6 @@ func TestMakeSet01(t *testing.T) {
 	v := 3
 	x1 := MakeSet(v)
 	x2 := MakeSet(v)
-
-	if x1 == x2 {
-		fmt.Println("Same Map")
-	} else {
-		fmt.Println("Diff Maps")
-	}
 
 	m1 := *x1
 	b1 := m1[v]
@@ -51,8 +45,32 @@ func TestUnion02(t *testing.T) {
 	x2 := MakeSet(1)
 
 	Union(x1, x2)
+	x2 = nil
 
 	PrintSet(x1)
 	PrintSet(x2)
 
+}
+
+func TestFindSet01(t *testing.T) {
+
+	dsgptr := MakeDSGraph(3, false)
+	dsg := *dsgptr
+	x1 := dsg.vertexset[0]
+	x2 := dsg.vertexset[1]
+
+	Union(x1, x2)
+	x2 = nil
+
+	PrintSet(x1)
+	PrintSet(x2)
+
+	x3 := FindSet(1, dsgptr)
+	PrintSet(x3)
+
+	x3 = FindSet(2, dsgptr)
+	PrintSet(x3)
+
+	x3 = FindSet(3, dsgptr)
+	PrintSet(x3)
 }

@@ -8,6 +8,12 @@ type GraphNode struct {
 	finishtime int //used in DFS
 }
 
+func MakeGraphNode(val int, col string, dist int, p *GraphNode, ftime int) *GraphNode {
+
+	gnp := &GraphNode{value: val, colour: col, distance: dist, parent: p, finishtime: ftime}
+	return gnp
+}
+
 type Graph interface {
 	VertexCount() int
 	EdgeCount() int
@@ -40,3 +46,7 @@ func (GN GraphNode) GetGraphNodeParent() *GraphNode {
 ///////////////////////////////////////////////////////////////
 //setter functions for graphnode
 ///////////////////////////////////////////////////////////////
+func (GNP *GraphNode) SetGraphNodeValue(v int) {
+	GN := *GNP
+	GN.value = v
+}
