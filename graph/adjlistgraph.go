@@ -66,14 +66,11 @@ func (ALG ADJListGraph) InsertEdge(e Edge) {
 	es[e] = true
 }
 
-//add direction to edge if its a directed graph
+//prints the edgeset of the AL graph
 func (ALG ADJListGraph) PrintEdgeSet() {
 
 	for e := range ALG.edgeset {
-
-		n1 := *e.u
-		n2 := *e.v
-		fmt.Println(n1.value, " -- ", n2.value, ", edgeweight = ", e.weight)
+		PrintEdge(e, ALG.isdirected)
 	}
 }
 

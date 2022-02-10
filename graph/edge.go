@@ -1,6 +1,10 @@
 package graph
 
-import "math"
+import (
+	"fmt"
+	"math"
+	"sort"
+)
 
 type Edge struct {
 	u      *GraphNode
@@ -30,4 +34,54 @@ func (e *Edge) SetEdgeWeight(w int) {
 
 func (e *Edge) GetEdgeWeight() int {
 	return e.weight
+}
+
+type byEdgeWeight []Edge
+
+//implementing Len,Less and Swap from sort.Interface
+func (es byEdgeWeight) Len() int {
+
+	return len(es)
+}
+
+//compare weights of two edges
+func (es byEdgeWeight) Less(i, j int) bool {
+
+	return es[i].weight < es[j].weight
+}
+
+func (es byEdgeWeight) Swap(i, j int) {
+	es[i], es[j] = es[j], es[i]
+
+}
+
+func SortEdgesbyWeight(algptr *ADJListGraph) *byEdgeWeight {
+
+	//slice of edges
+	es := make([]Edge, len(algptr.edgeset))
+	i := 0
+
+	//populate slice of edges in any order
+	for e := range algptr.edgeset {
+		es[i] = e
+		i++
+	}
+
+	//convert []Edge to byEdgeWeight
+	bew := byEdgeWeight(es)
+
+	//sort the slice
+	sort.Sort(bew)
+
+	return &bew
+}
+
+//isdg equals true for directed graphs
+func PrintEdge(e Edge, isdg bool) {
+
+	if isdg {
+		fmt.Println(e.u.value, "-->", e.v.value, " , weight = ", e.weight)
+	} else {
+		fmt.Println(e.u.value, "--", e.v.value, " , weight = ", e.weight)
+	}
 }

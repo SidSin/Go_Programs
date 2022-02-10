@@ -63,8 +63,8 @@ func MakeDSGraph(vertexcount int, isdirected bool) *DSGraph {
 }
 
 //assumes that both x and y are not nil
-//contents of y are added to x
-//preserves the condition that keys are not repated
+//all the contents of y are added to x
+//preserves the condition that keys are not repeated
 //after union even if x and y have the same element
 //after call to Union, set y to nil
 func Union(x, y *map[int]graph.GraphNode) *map[int]graph.GraphNode {
