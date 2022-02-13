@@ -16,8 +16,16 @@ func (ALG ADJListGraph) ALVertexCount() int {
 	return len(ALG.vertexset)
 }
 
+func (ALG *ADJListGraph) GetVertexSet() *[]GraphNode {
+	return &(ALG.vertexset)
+}
+
 func (ALG ADJListGraph) ALEdgeCount() int {
 	return len(ALG.edgeset)
+}
+
+func (ALG *ADJListGraph) GetEdgeSet() *map[Edge]bool {
+	return &(ALG.edgeset)
 }
 
 func (ALG ADJListGraph) IsDirected() bool {
