@@ -8,6 +8,7 @@ import (
 func TestMakeSet01(t *testing.T) {
 
 	v := 3
+	//make two sets each with element v
 	x1 := MakeSet(v)
 	x2 := MakeSet(v)
 
