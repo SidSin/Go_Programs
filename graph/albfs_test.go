@@ -36,6 +36,57 @@ func TestALBFS01(t *testing.T) {
 
 }
 
+func TestALBFS02(t *testing.T) {
+
+	gptr1 := MakeALGraph(3, false)
+
+	g1 := *gptr1
+
+	//make a triangle
+	g1.InsertEdge(CreateEdge(0, 1))
+	g1.InsertEdge(CreateEdge(1, 2))
+	g1.InsertEdge(CreateEdge(2, 0))
+
+	g1.PrintGraphAL()
+
+	fmt.Println("Before BFS")
+	PrintALGraphNodeProperties(gptr1)
+
+	ALBFS(gptr1, 0)
+
+	fmt.Println("")
+	fmt.Println("After BFS")
+	PrintALGraphNodeProperties(gptr1)
+
+}
+
+func TestALBFS03(t *testing.T) {
+
+	gptr1 := MakeALGraph(4, false)
+
+	g1 := *gptr1
+
+	//make a square with one diagonal
+	//top left to bottom right
+	g1.InsertEdge(CreateEdge(0, 1))
+	g1.InsertEdge(CreateEdge(0, 2)) //diagonal
+	g1.InsertEdge(CreateEdge(0, 3))
+	g1.InsertEdge(CreateEdge(1, 2))
+	g1.InsertEdge(CreateEdge(2, 3))
+
+	g1.PrintGraphAL()
+
+	fmt.Println("Before BFS")
+	PrintALGraphNodeProperties(gptr1)
+
+	ALBFS(gptr1, 0)
+
+	fmt.Println("")
+	fmt.Println("After BFS")
+	PrintALGraphNodeProperties(gptr1)
+
+}
+
 //case where BFS is started from node zero
 func TestPrintPath00(t *testing.T) {
 
