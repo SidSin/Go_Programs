@@ -62,8 +62,9 @@ func (ALG ADJListGraph) InsertEdge(e Edge) {
 		ALG.adjlist[endnodevalue].AddatEnd(startnodevalue)
 	}
 
-	es := ALG.edgeset
-	es[e] = true
+	//add edge to the edgeset
+	emap := ALG.edgeset
+	emap[e] = true
 }
 
 //prints the edgeset of the AL graph
