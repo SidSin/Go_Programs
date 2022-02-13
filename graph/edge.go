@@ -12,6 +12,16 @@ type Edge struct {
 	weight int
 }
 
+func (e Edge) GetStartVertexValue() int {
+
+	return e.u.value
+}
+
+func (e Edge) GetEndVertexValue() int {
+
+	return e.v.value
+}
+
 func CreateEdge(u, v int) Edge {
 
 	ptr1 := &GraphNode{value: u, colour: "WHITE", distance: math.MaxInt, parent: nil, finishtime: math.MaxInt}
@@ -55,6 +65,8 @@ func (es byEdgeWeight) Swap(i, j int) {
 
 }
 
+//Returns a pointer to a slice of edges
+//where slice of edges = byEdgeweight
 func SortEdgesbyWeight(algptr *ADJListGraph) *byEdgeWeight {
 
 	//slice of edges
