@@ -6,11 +6,11 @@ import (
 
 func MinSpanTreeKK(ALG *graph.ADJListGraph) *graph.ADJListGraph {
 
-	dsg := MakeDSGraph(ALG.ALVertexCount(), false)
+	dsg := MakeDSGraph(ALG.ALVertexCount(), ALG.IsDirected())
 
 	sortedgraph := graph.SortEdgesbyWeight(ALG)
 
-	mstgraph := graph.MakeALGraph(ALG.ALVertexCount(), false)
+	mstgraph := graph.MakeALGraph(ALG.ALVertexCount(), ALG.IsDirected())
 
 	for _, e := range *sortedgraph {
 
