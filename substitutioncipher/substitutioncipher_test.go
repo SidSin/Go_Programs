@@ -64,10 +64,10 @@ func TestShiftTwo_01(t *testing.T) {
 
 func TestEncryptFile_03(t *testing.T) {
 
-	name := "TestFile_04"
+	name := "UTF-8 test file.txt"
 
-	f := simpleprogs.Openfile("C:\\Users\\SIDDHSIN\\" + name + ".txt")
-	ef, err := os.Create("C:\\Users\\SIDDHSIN\\Enr_" + name + ".txt")
+	f := simpleprogs.Openfile("C:\\Users\\SIDDHSIN\\" + name)
+	ef, err := os.Create("C:\\Users\\SIDDHSIN\\Enr_" + name)
 	simpleprogs.Check(err)
 
 	initializeunshiftedrunes()
@@ -75,6 +75,7 @@ func TestEncryptFile_03(t *testing.T) {
 	shift := 1
 
 	scanner := bufio.NewScanner(f)
+	w := bufio.NewWriter(ef)
 
 	for scanner.Scan() {
 		line := scanner.Text()
@@ -82,6 +83,9 @@ func TestEncryptFile_03(t *testing.T) {
 		encryptedstr := encryptstring(line, shift)
 
 		simpleprogs.WriteStringtoFile(*ef, encryptedstr)
+
+		w.WriteRune('\n')
+		w.Flush()
 	}
 
 }
@@ -92,6 +96,12 @@ func encryptstring(line string, shift int) string {
 	encryptedstr := ""
 
 	for _, r := range line {
+
+		if r == '\n' {
+			fmt.Println("New Line detected.")
+			break
+		}
+
 		r = GetShiftedRune(r, shift)
 
 		encryptedstr = encryptedstr + string(r)
