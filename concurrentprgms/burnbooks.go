@@ -36,10 +36,6 @@ func NewBookshelf(capacity int) *Bookshelf {
 	return &bs
 }
 
-// func PrintTime() {
-// 	fmt.Println(time.Now().Format("2006-01-02 15:04:05.000000000"))
-// }
-
 func (b *Bookshelf) PrintBookShelf() {
 	fmt.Println("###########################################")
 	for i := 0; i < b.initcap; i++ {
@@ -52,7 +48,7 @@ func (b *Bookshelf) PrintBookShelf() {
 
 func (b *Bookshelf) unloadbook() int {
 
-	fmt.Println(" --- ", time.Now().Format("2006-01-02 15:04:05.000000000"), " --- ")
+	fmt.Println(" --- ", timenow(), " --- ")
 	pickedbook := -1
 
 	if b.capacity >= 1 {
@@ -83,44 +79,76 @@ func (b *Bookshelf) Isempty() bool {
 	}
 }
 
-//No channel for communication used
-// Two workers burn books at the same time (down to nanosecond level)
-func BookBurner(b *Bookshelf, wokernum int) {
+//Added channel for co-ordination
+//Divided workers as bookpicker and bookburner
 
-	booksburned := 0
+func burningtime() {
+	time.Sleep(time.Second)
+}
 
+func traveltime() {
+	time.Sleep(time.Second)
+}
+
+func timenow() string {
+	return time.Now().Format("2006-01-02 15:04:05.000000000")
+}
+
+func BookPicker(b *Bookshelf, wokernum int, outchannel chan int) {
 	fmt.Println("")
-	fmt.Println("(", wokernum, ") *** Initial capacity = ", b.capacity, b.Isempty(), " *** ")
+	fmt.Println("(", wokernum, ") *** Initial capacity = ", b.capacity, b.Isempty(), timenow(), " *** ")
 	fmt.Println("")
 
 	for !b.Isempty() {
 
 		booknum := b.unloadbook()
+
 		if booknum < 0 {
 
 			fmt.Println("(", wokernum, ")", "No more books to pick.")
 			break
 
 		} else {
-			//sleep for 1 sec to simulate transport time to incinerator
+			//sleep for 1 sec to simulate transport time to staging area
 			fmt.Println("")
 			fmt.Println("")
 			fmt.Println("    (", wokernum, ") ------------------------------------------------")
-			fmt.Println("    (", wokernum, ")", time.Now().Format("2006-01-02 15:04:05.000000000"), "Picked Book Num ", booknum)
-			fmt.Println("    (", wokernum, ")", time.Now().Format("2006-01-02 15:04:05.000000000"), "Going to Incinerator ... >>")
-			time.Sleep(1000000000)
+			fmt.Println("    (", wokernum, ")", timenow(), "Picked Book Num ", booknum)
+			fmt.Println("    (", wokernum, ")", timenow(), "Going to staging area ... >>")
+			traveltime()
 
-			//sleep for 1 sec to simulate book load on incinerator
+			outchannel <- booknum
 
-			//sleep for 1 sec to simulate book burning
-			booksburned = booksburned + 1
-			fmt.Println("    (", wokernum, ")", time.Now().Format("2006-01-02 15:04:05.000000000"), "Burning Book No ", booknum)
-			b.slot[booknum].status = "Burned"
+			fmt.Println("    (", wokernum, ")", timenow(), "Book dropped to staging,Going back to bookshelf ... <<")
+			traveltime()
 
-			//sleep for 1 sec to simulate transport time from incinerator
-			fmt.Println("    (", wokernum, ") Going back to BookShelf <<... ")
-			time.Sleep(1000000000)
 		}
+
+	}
+	close(outchannel)
+}
+
+func BookBurner(b *Bookshelf, wokernum int, inchannel chan int) {
+
+	booksburned := 0
+
+	for booknum := range inchannel {
+
+		//booknum := <-inchannel
+		fmt.Println("    (", wokernum, ")", timenow(), "Value received from channel = ", booknum)
+
+		//sleep for 1 sec to simulate going to incinerator
+		traveltime()
+
+		//sleep for 1 sec to simulate book burning
+		fmt.Println("    (", wokernum, ")", timenow(), "Burning Book No ", booknum)
+		burningtime()
+		booksburned = booksburned + 1
+		b.slot[booknum].status = "Burned"
+
+		//sleep for 1 sec to simulate transport time from incinerator
+		fmt.Println("    (", wokernum, ")", timenow(), "Going back to staging area <<... ")
+		traveltime()
 	}
 
 	fmt.Println("")

@@ -12,6 +12,8 @@ func TestBookBurning(t *testing.T) {
 
 	bs1 := NewBookshelf(initcapacity)
 
+	c1 := make(chan int)
+
 	fmt.Println("")
 	fmt.Println("")
 
@@ -19,18 +21,10 @@ func TestBookBurning(t *testing.T) {
 
 	//fmt.Println("    bs1 capcity = ", bs1.capacity, bs1.Isempty())
 
-	go BookBurner(bs1, 1)
-	go BookBurner(bs1, 2)
-	// go BookBurner(bs1, 3)
-	// go BookBurner(bs1, 4)
-	// go BookBurner(bs1, 5)
-	// go BookBurner(bs1, 6)
-	// go BookBurner(bs1, 7)
-	// go BookBurner(bs1, 8)
-	// go BookBurner(bs1, 9)
-	// go BookBurner(bs1, 10)
+	go BookPicker(bs1, 1, c1)
+	go BookBurner(bs1, 2, c1)
 
-	time.Sleep(1000000000 * 10)
+	time.Sleep(time.Second * 20)
 
 	fmt.Println("     Final Capacity = ", bs1.capacity)
 	bs1.PrintBookShelf()
